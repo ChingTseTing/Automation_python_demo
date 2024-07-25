@@ -25,7 +25,7 @@ jobs:
           pip install -r requirements.txt
       
       - name: execute py script # run main.py
-        env:
-          SOME_SECRET: ${{ secrets.SOME_SCRET }}
+       # env:
+        #  SOME_SECRET: ${{ secrets.SOME_SCRET }}
         run: python main.py
         
