@@ -2,13 +2,14 @@
 name: demo yaml
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # push to main trigger
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ] # pull request to main trigger
+  # Allow manually trigger
   workflow_dispatch:
-  
 #  schedule:
 #    - cron: '0 21 * * *'
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
