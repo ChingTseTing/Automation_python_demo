@@ -1,36 +1,31 @@
-# This is a basic workflow that is manually triggered
 
-name: Manual workflow
-
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
+name: demo yaml
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
- # schedule: 
- #   - cron: '0 */2 * * *' # run every 2 hours
+  
+#  schedule:
+#    - cron: '0 21 * * *'
 jobs:
-  build:
-    runs-on: ubantu-latest
+  scrape:
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 #checkout the repository content to github runner
-
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9' # install the python needed
-
-      - name: install python pakages
-        run: 
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      
-      - name: execute py script # run main.py
-       # env:
-        #  SOME_SECRET: ${{ secrets.SOME_SCRET }}
-        run: python main.py
+      - name: Checking out repo
+        uses: actions/checkout@v2
         
+      - name: Setting up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          
+      - name: Installing package list
+        run: apt list --installed
+        
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Running the Python script
+        run: python main.py
